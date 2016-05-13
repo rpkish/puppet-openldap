@@ -44,15 +44,16 @@ class openldap::server::slapdconf {
           value => $::openldap::server::ssl_ca,
         }
       }
-    } else {
+    } elsif $::openldap::server::ssl_db {
       if $::openldap::server::ssl_db {
         openldap::server::globalconf { 'TLSCertificate':
           value => {
             'TLSCertificateFile'    => $::openldap::server::ssl_cert,
-          },
+          }
         }
-      } else {
-        fail 'You must specify a ssl_key'
+      }
+    } else {
+      fail 'You must specify a ssl_key'
     }
   } elsif $::openldap::server::ssl_key {
     fail 'You must specify a ssl_cert'
@@ -65,3 +66,4 @@ class openldap::server::slapdconf {
   create_resources('openldap::server::database', $::openldap::server::databases)
 
 }
+
