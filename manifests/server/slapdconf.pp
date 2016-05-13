@@ -1,4 +1,4 @@
- See README.md for details.
+# See README.md for details.
 class openldap::server::slapdconf {
 
   if ! defined(Class['openldap::server']) {
