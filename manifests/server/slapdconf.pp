@@ -45,7 +45,16 @@ class openldap::server::slapdconf {
         }
       }
     } else {
-      fail 'You must specify a ssl_key'
+      #fail 'You must specify a ssl_key'
+      if $::openldap::server::ssl_db {
+        openldap::server::globalconf { 'TLSCertificate':
+          value => {
+            'TLSCertificateFile'    => $::openldap::server::ssl_cert,
+          },
+        }
+      } else {
+        fail 'You must specify a ssl_key'
+      }
     }
   } elsif $::openldap::server::ssl_key {
     fail 'You must specify a ssl_cert'
