@@ -16,6 +16,7 @@ class openldap::server(
   $ssl_key   = undef,
   $ssl_cert  = undef,
   $ssl_ca    = undef,
+  $ssl_db    = undef,
 
   $databases = {},
 
